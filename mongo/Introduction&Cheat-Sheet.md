@@ -84,6 +84,34 @@ db.collection_name.find({ difficulty: 'easy' })
 
 ```
 
+- Find Rows with one criteria(price) that have number less than 500:
+
+```shell
+db.collection_name.find({ price: {$lt: 500} })
+
+```
+
+- Find Rows with tow criteria(price and rating), price that have number less or equal than 500 and rating that have number Greater or equal than 4.8:
+
+```shell
+db.collection_name.find({ price: {$lte: 500}, rating:{$gte:4.8}  })
+
+```
+
+- Find Rows with tow criteria(price or rating), price that have number less or equal than 500 and rating that have number Greater or equal than 4.8:
+
+```shell
+db.collection_name.find({ $or:[{price: {$lte: 500}}, {rating:{$gte:4.8}}]  })
+
+```
+
+- Find Rows with tow criteria(price or rating), price that have number less or equal than 500 and rating that have number Greater or equal than 4.8 and just select one field witch is Name :
+
+```shell
+db.collection_name.find({ $or:[{price: {$lte: 500}}, {rating:{$gte:4.8}}],{name:1} })
+
+```
+
 - Sort Rows:
 
 ```shell
@@ -137,6 +165,8 @@ db.collection_name.find({ title: 'Post One' }, {
 
 - Update Row
 
+> Note: we have UpdateOne and UpdateMany methods
+
 ```shell
 db.collection_name.update({ title: 'Post Two' },
 {
@@ -184,6 +214,10 @@ db.collection_name.update({ title: 'Post Two' },
 ```
 
 - Delete Row
+
+> Note: we have UpdateOne and UpdateMany methods
+
+> **Warning**: if you use empty obj "{}" inside DeleteMany method it will remove all documents.
 
 ```shell
 db.collection_name.remove({ title: 'Post Four' })
